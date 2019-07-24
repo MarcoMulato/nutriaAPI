@@ -1,2 +1,2 @@
-release: ENV_SILENT=true adonis serve node ace migration:run --force
-web: ENV_SILENT=true adonis serve npm start
+release: ENV_SILENT=true adonis migration:run --force
+web: ENV_SILENT=true adonis serve
