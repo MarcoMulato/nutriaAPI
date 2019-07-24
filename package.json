@@ -34,6 +34,12 @@
   "autoload": {
     "App": "./app"
   },
+  "standard": {
+    "globals": [
+      "use",
+      "make"
+    ]
+  },
   "engines": {
     "node": "8.4.0"
   }
