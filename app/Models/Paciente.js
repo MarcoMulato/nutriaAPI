@@ -22,6 +22,9 @@ class Paciente extends Model {
     static get primaryKey () {
         return 'id'
     }
+    tokens () {
+        return this.hasMany('App/Models/TokenPaciente')
+      }
 }
 
 module.exports = Paciente

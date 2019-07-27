@@ -67,9 +67,9 @@ class UsuarioController {
     async login({request, response, auth}) {
         const {correo, contraseña} = request.all();
         console.log("contra", contraseña)
-        const usuario = await auth.attempt(correo, contraseña);
-        console.log("AL SALIR", usuario.token)
+        const usuario = await auth.authenticator('api2').attempt(correo, contraseña);
         const user_id = await Usuario.query().select('id').where('correo','=',correo).fetch()
+        console.log("usuario: ", usuario)
         Object.assign(usuario,user_id.toJSON())
         console.log("AL SALIR", user_id.toJSON())
         return response.json(usuario);

@@ -28,6 +28,16 @@ module.exports = {
       secret: 'self::app.appKey'
     }
   },
+  api2:{
+    serializer: 'lucid',
+    scheme: 'api',
+    model: 'App/Models/Paciente',
+    uid: 'correo',
+    password: 'contraseña',
+    options: {
+      secret: 'self::app.appKey'
+    }
+  },
 
   /*
   |--------------------------------------------------------------------------
