@@ -27,6 +27,7 @@ Route.group(() =>{
   Route.post('login','UsuarioController.login')
   //PACIENTES
   Route.post('pacientes', 'PacienteController.store')
+  Route.post('pacientes_login','PacienteController.login')
   Route.get('pacientes','PacienteController.index')
   Route.get('pacientes/:id', 'PacienteController.show')
   Route.put('pacientes/:id', 'PacienteController.update')
