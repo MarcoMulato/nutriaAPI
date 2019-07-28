@@ -10,8 +10,8 @@ class PacienteDietaSchema extends Schema {
       table.integer('paciente_id').unsigned().references('id').inTable('pacientes')
       table.string('fecha_inicio')
       table.string('fecha_termino')
-      table.string('lista_dieta').notNullable()
-      table.string('status').notNullable()
+      table.text('lista_dieta')
+      table.string('status')
       table.timestamps()
     })
   }
