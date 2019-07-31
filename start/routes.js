@@ -25,7 +25,7 @@ Route.group(() =>{
   Route.put('usuarios/:id', 'UsuarioController.update')
   Route.delete('usuarios/:id', 'UsuarioController.delete')  
   Route.post('login','UsuarioController.login')
-  Route.put('usuarios_password/:id', 'PacienteController.password')
+  Route.put('usuarios_password/:id', 'UsuarioController.password')
   //PACIENTES
   Route.post('pacientes', 'PacienteController.store')
   Route.delete('eliminar_paciente/:id', 'PacienteController.delete')
