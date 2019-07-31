@@ -69,13 +69,13 @@ class UsuarioController {
         return response.status(200).json(usuario)
     }
     async delete ({ params, request, response }) {
-        const usuarioInfo = request.only(['status'])
+        const usuarioInfo = request.only(['eliminado'])
 
         const usuario = await Usuario.find(params.id)
         if(!usuario) {
             return response.status(404).json({data: "Paciente no encontrado."})
         }
-        usuario.status = usuarioInfo.status
+        usuario.eliminado = usuarioInfo.eliminado
 
         await usuario.save()
     
