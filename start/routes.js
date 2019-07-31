@@ -32,7 +32,7 @@ Route.group(() =>{
   Route.get('pacientes/:id', 'PacienteController.show')
   Route.put('pacientes/:id', 'PacienteController.update')
   Route.put('pacientes/:id', 'PacienteDietaController.update')
-  Route.put('pacientes_password/:id', 'PacienteDietaController.password')
+  Route.put('pacientes_password/:id', 'PacienteController.password')
   Route.put('pacientes_asignar_dieta/:id', 'PacienteDietaController.dieta')
   Route.post('pacientes_dieta', 'PacienteDietaController.store')
   Route.post('pacientes_dieta_nueva', 'PacienteDietaController.storeNew')
