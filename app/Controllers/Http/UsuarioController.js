@@ -44,6 +44,21 @@ class UsuarioController {
     
         return response.status(200).json(usuario)
     }
+    
+    async password ({ params, request, response }) {
+        const usuarioInfo = request.only(['contraseña'])
+
+        const usuario = await Usuario.find(params.id)
+        if(!usuario) {
+            return response.status(404).json({data: "Paciente no encontrado."})
+        }
+        usuario.contraseña = usuarioInfo.contraseña
+
+        await usuario.save()
+    
+        return response.status(200).json(usuario)
+    }
+
     async delete ({ params, response }) {
         const usuario = await Usuario.find(params.id)
         if (!usuario) {
