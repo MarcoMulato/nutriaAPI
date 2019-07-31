@@ -1,5 +1,6 @@
 'use strict'
 const Usuario = use('App/Models/Paciente')
+const Log = ('App/Models/Paciente')
 class UsuarioController {
     async index ({ response }) {
         let usuarios = await Usuario.all()
@@ -16,6 +17,7 @@ class UsuarioController {
         const usuarioInfo = request.only(['usuario','correo','contraseña','nutriologo_id'])
 
         const usuario = new Usuario()
+        const logi = new Log()
         console.log("Usuario: ", usuarioInfo.usuario)
         console.log("Contraseña: ", usuarioInfo.contraseña)
         usuario.usuario = usuarioInfo.usuario
@@ -23,6 +25,8 @@ class UsuarioController {
         usuario.contraseña = usuarioInfo.contraseña
         usuario.nutriologo_id = usuarioInfo.nutriologo_id
         await usuario.save()
+        logi.log = "Se creo un paciente"
+        logi.log = usuario.id
     
         return response.status(201).json(usuario)
     }
