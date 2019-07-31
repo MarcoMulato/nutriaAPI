@@ -27,6 +27,7 @@ Route.group(() =>{
   Route.post('login','UsuarioController.login')
   //PACIENTES
   Route.post('pacientes', 'PacienteController.store')
+  Route.delete('eliminar_paciente/:id', 'PacienteController.delete')
   Route.post('pacientes_login','PacienteController.login')
   Route.get('pacientes','PacienteController.index')
   Route.get('pacientes/:id', 'PacienteController.show')
@@ -46,6 +47,7 @@ Route.group(() =>{
   Route.post('datos','DatoController.store')
   Route.get('datos/:id','DatoController.show')
   Route.put('datos/:id', 'DatoController.update')
+  Route.delete('eliminar_datos/:id', 'DatoController.delete')
 }).prefix('api/v1')
 
 Route.get('/', () => {
