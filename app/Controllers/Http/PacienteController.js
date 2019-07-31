@@ -28,7 +28,7 @@ class UsuarioController {
     }
 
     async update ({ params, request, response }) {
-        const usuarioInfo = request.only(['usuario','correo','contraseña'])
+        const usuarioInfo = request.only(['usuario','correo'])
         
         const usuario = await Usuario.find(params.id)
         if (!usuario) {
@@ -36,12 +36,25 @@ class UsuarioController {
         }
         usuario.usuario = usuarioInfo.usuario
         usuario.correo = usuarioInfo.correo
-        usuario.contraseña = usuarioInfo.contraseña
     
         await usuario.save()
     
         return response.status(200).json(usuario)
     }
+    async password ({ params, request, request }) {
+        const usuarioInfo = request.only(['contraseña'])
+
+        const usuario = await Usuario.find(params.id)
+        if(!usuario) {
+            return response.status(404).json({data: "Paciente no encontrado."})
+        }
+        usuario.contraseña = usuarioInfo.contraseña
+        
+        await usuario.save()
+    
+        return response.status(200).json(usuario)
+    }
+
     async dieta ({ params, request, response }) {
         const usuarioInfo = request.only(['id_dieta'])
         
