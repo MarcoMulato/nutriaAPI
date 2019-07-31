@@ -10,6 +10,7 @@ class PacienteSchema extends Schema {
       table.string('usuario', 80).notNullable().unique()
       table.string('correo', 254).notNullable().unique()
       table.string('contraseña', 60).notNullable()
+      table.string('status', 60)
       table.integer('nutriologo_id').unsigned().references('id').inTable('usuarios')
       table.timestamps()
     })
