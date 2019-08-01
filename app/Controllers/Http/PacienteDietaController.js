@@ -37,7 +37,7 @@ class PacienteDietaController {
     
         await dieta.save()
         logi.log = "Se le asigno la dieta a un paciente"
-        logi.usuario = paciente_id
+        logi.usuario = dietaInfo.paciente_id
         await logi.save()
         return response.status(201).json(dieta)
     }
