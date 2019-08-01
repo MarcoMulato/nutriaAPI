@@ -45,7 +45,7 @@ class UsuarioController {
         await usuario.save()
         logi.log = "Se actualizo un paciente"
         logi.usuario = params.id
-    
+        await logi.save()
         return response.status(200).json(usuario)
     }
     async password ({ params, request, response }) {
@@ -60,7 +60,7 @@ class UsuarioController {
         await usuario.save()
         logi.log = "Se actualizo un contraseña de paciente"
         logi.usuario = params.id
-    
+        await logi.save()
         return response.status(200).json(usuario)
     }
 
@@ -76,7 +76,7 @@ class UsuarioController {
         await usuario.save()
         logi.log = "Se asigno una dieta"
         logi.usuario = params.id
-    
+        await logi.save()
         return response.status(200).json(usuario)
     }
     async delete ({ params, request, response }) {
@@ -91,7 +91,7 @@ class UsuarioController {
         await usuario.save()
         logi.log = "Se desactivo un paciente"
         logi.usuario = params.id
-    
+        await logi.save()
         return response.status(200).json(usuario)
     }
     async login({request, response, auth}) {
@@ -105,6 +105,7 @@ class UsuarioController {
         console.log("AL SALIR", user_id.toJSON())
         logi.log = "Se desactivo un paciente"
         logi.usuario = user_id
+        await logi.save()
         return response.json(usuario);
     }
 }
