@@ -1,5 +1,6 @@
 'use strict'
 const Dieta = use('App/Models/Dieta')
+const Log = use('App/Models/Log')
 class DietaController {
     async index ({ response }) {
         let dietas = await Dieta.all()

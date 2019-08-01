@@ -1,6 +1,6 @@
 'use strict'
 const Dato = use('App/Models/Dato')
-
+const Log = use('App/Models/Log')
 class DatoController {
     
     async index ({ response }) {
