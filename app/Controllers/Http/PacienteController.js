@@ -1,6 +1,6 @@
 'use strict'
 const Usuario = use('App/Models/Paciente')
-const Log = ('App/Models/Paciente')
+const Log = ('App/Models/Log')
 class UsuarioController {
     async index ({ response }) {
         let usuarios = await Usuario.all()
