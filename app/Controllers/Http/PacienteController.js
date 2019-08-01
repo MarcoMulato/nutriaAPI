@@ -104,7 +104,7 @@ class UsuarioController {
         Object.assign(usuario,user_id.toJSON())
         console.log("AL SALIR", user_id.toJSON())
         logi.log = "Se desactivo un paciente"
-        logi.usuario = user_id
+        logi.usuario = user_id.toJSON()
         await logi.save()
         return response.json(usuario);
     }
