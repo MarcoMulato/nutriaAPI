@@ -49,6 +49,8 @@ Route.group(() =>{
   Route.get('datos/:id','DatoController.show')
   Route.put('datos/:id', 'DatoController.update')
   Route.delete('eliminar_datos/:id', 'DatoController.delete')
+  //LOGS
+  Route.get('log/:id', 'LogController.show')
 }).prefix('api/v1')
 
 Route.get('/', () => {
