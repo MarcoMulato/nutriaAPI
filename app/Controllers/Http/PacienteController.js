@@ -27,6 +27,7 @@ class UsuarioController {
         await usuario.save()
         logi.log = "Se creo un paciente"
         logi.log = usuario.id
+        await logi.save()
     
         return response.status(201).json(usuario)
     }
