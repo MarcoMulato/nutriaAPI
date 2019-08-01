@@ -67,7 +67,7 @@ class PacienteDietaController {
         dieta.fecha_termino = dietaInfo.fecha_termino
         dieta.status = "Dieta terminada"
         logi.log = "Se termino la dieta a un paciente"
-        logi.usuario = paciente_id
+        logi.usuario = params.id
         await logi.save()
         await dieta.save()
     
