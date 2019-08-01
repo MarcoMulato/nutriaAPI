@@ -2,10 +2,9 @@
 const Log = use('App/Models/Log')
 
 class LogController {
-    async show ({ params, response }) {
-        const log = await Log.find(params.id)
-
-        return response.json(log)
+    async index ({ response }) {
+        let usuarios = await Usuario.all()
+        return response.json(usuarios)
     }
 }
 
