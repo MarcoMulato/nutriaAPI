@@ -26,7 +26,7 @@ class UsuarioController {
         usuario.nutriologo_id = usuarioInfo.nutriologo_id
         await usuario.save()
         logi.log = "Se creo un paciente"
-        logi.log = usuario.id
+        logi.usuario = usuario.id
         await logi.save()
     
         return response.status(201).json(usuario)
