@@ -26,7 +26,7 @@ class UsuarioController {
         usuario.nutriologo_id = usuarioInfo.nutriologo_id
         await usuario.save()
         logi.log = "Se creo un paciente"
-        logi.usuario = usuario.id
+        logi.usuario = usuarioInfo.nutriologo_id
         await logi.save()
     
         return response.status(201).json(usuario)
@@ -34,7 +34,7 @@ class UsuarioController {
 
     async update ({ params, request, response }) {
         const usuarioInfo = request.only(['usuario','correo'])
-        
+        const logi = new Log()
         const usuario = await Usuario.find(params.id)
         if (!usuario) {
             return response.status(404).json({data: "Paciente no encontrado."})
@@ -43,12 +43,14 @@ class UsuarioController {
         usuario.correo = usuarioInfo.correo
     
         await usuario.save()
+        logi.log = "Se actualizo un paciente"
+        logi.usuario = params.id
     
         return response.status(200).json(usuario)
     }
     async password ({ params, request, response }) {
         const usuarioInfo = request.only(['contraseña'])
-
+        const logi = new Log()
         const usuario = await Usuario.find(params.id)
         if(!usuario) {
             return response.status(404).json({data: "Paciente no encontrado."})
@@ -56,13 +58,15 @@ class UsuarioController {
         usuario.contraseña = usuarioInfo.contraseña
 
         await usuario.save()
+        logi.log = "Se actualizo un contraseña de paciente"
+        logi.usuario = params.id
     
         return response.status(200).json(usuario)
     }
 
     async dieta ({ params, request, response }) {
         const usuarioInfo = request.only(['id_dieta'])
-        
+        const logi = new Log()
         const usuario = await Usuario.find(params.id)
         if (!usuario) {
             return response.status(404).json({data: "Paciente no encontrado."})
@@ -70,12 +74,14 @@ class UsuarioController {
         usuario.id_dieta = usuarioInfo.id_dieta
     
         await usuario.save()
+        logi.log = "Se asigno una dieta"
+        logi.usuario = params.id
     
         return response.status(200).json(usuario)
     }
     async delete ({ params, request, response }) {
         const usuarioInfo = request.only(['eliminado'])
-
+        const logi = new Log()
         const usuario = await Usuario.find(params.id)
         if(!usuario) {
             return response.status(404).json({data: "Paciente no encontrado."})
@@ -83,17 +89,22 @@ class UsuarioController {
         usuario.eliminado = usuarioInfo.eliminado
 
         await usuario.save()
+        logi.log = "Se desactivo un paciente"
+        logi.usuario = params.id
     
         return response.status(200).json(usuario)
     }
     async login({request, response, auth}) {
         const {correo, contraseña} = request.all();
+        const logi = new Log()
         console.log("contra", contraseña)
         const usuario = await auth.authenticator('api2').attempt(correo, contraseña);
         const user_id = await Usuario.query().select('id').where('correo','=',correo).fetch()
         console.log("usuario: ", usuario)
         Object.assign(usuario,user_id.toJSON())
         console.log("AL SALIR", user_id.toJSON())
+        logi.log = "Se desactivo un paciente"
+        logi.usuario = user_id
         return response.json(usuario);
     }
 }
