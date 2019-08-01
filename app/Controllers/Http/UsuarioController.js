@@ -47,7 +47,7 @@ class UsuarioController {
     
     async password ({ params, request, response }) {
         const usuarioInfo = request.only(['contraseña'])
-
+        const logi = new Log()
         const usuario = await Usuario.find(params.id)
         if(!usuario) {
             return response.status(404).json({data: "Paciente no encontrado."})
@@ -55,6 +55,9 @@ class UsuarioController {
         usuario.contraseña = usuarioInfo.contraseña
 
         await usuario.save()
+        logi.log = "Se actualizo la contraseña"
+        logi.usuario = params.id
+        await logi.save()
     
         return response.status(200).json(usuario)
     }
@@ -70,12 +73,16 @@ class UsuarioController {
     }
     async login({request, response, auth}) {
         const {correo, contraseña} = request.all();
+        const logi = new Log()
         console.log("contra", contraseña)
         const usuario = await auth.attempt(correo, contraseña);
         console.log("AL SALIR", usuario.token)
         const user_id = await Usuario.query().select('id').where('correo','=',correo).fetch()
         Object.assign(usuario,user_id.toJSON())
         console.log("AL SALIR", user_id.toJSON())
+        logi.log = "Se logeo un nutriologo"
+        logi.usuario = correo
+        await logi.save()
         return response.json(usuario);
     }
 }

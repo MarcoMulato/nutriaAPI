@@ -27,7 +27,7 @@ class PacienteDietaController {
 
     async storeNew ({ request, response }) {
         const dietaInfo = request.only(['paciente_id','fecha_inicio','lista_dieta'])
-
+        const logi = new Log()
         const dieta = new Dieta()
         dieta.paciente_id = dietaInfo.paciente_id
         dieta.lista_dieta = dietaInfo.lista_dieta
@@ -35,7 +35,9 @@ class PacienteDietaController {
         dieta.status = "Dieta en curso"
     
         await dieta.save()
-    
+        logi.log = "Se le asigno la dieta a un paciente"
+        logi.usuario = paciente_id
+        await logi.save()
         return response.status(201).json(dieta)
     }
 
@@ -56,14 +58,16 @@ class PacienteDietaController {
     }
     async finish ({ params, request, response }) {
         const dietaInfo = request.only(['fecha_termino'])
-        
+        const logi = new Log()
         const dieta = await Dieta.find(params.id)
         if (!dieta) {
             return response.status(404).json({data: "Dieta no encontrado."})
         }
         dieta.fecha_termino = dietaInfo.fecha_termino
         dieta.status = "Dieta terminada"
-    
+        logi.log = "Se termino la dieta a un paciente"
+        logi.usuario = paciente_id
+        await logi.save()
         await dieta.save()
     
         return response.status(200).json(dieta)
