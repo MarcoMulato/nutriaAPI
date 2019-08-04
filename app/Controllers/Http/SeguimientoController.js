@@ -2,6 +2,13 @@
 const Seguimiento = use('App/Models/Seguimiento')
 
 class SeguimientoController {
+
+    async index ({ response }) {
+        let seguimiento = await Seguimiento.all()
+        
+        return response.json(seguimiento)
+    }
+
     async store ({ request, response }) {
         const seguimientoInfo = request.only(['peso','paciente_id'])
 
