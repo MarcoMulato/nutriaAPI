@@ -49,6 +49,7 @@ Route.group(() =>{
   Route.get('datos/:id','DatoController.show')
   Route.put('datos/:id', 'DatoController.update')
   Route.delete('eliminar_datos/:id', 'DatoController.delete')
+  Route.put('dato_peso/:id', 'DatoController.updatePeso')
   //LOGS
   Route.get('log', 'LogController.index')
   //SEGUIMIENTO

@@ -56,6 +56,19 @@ class DatoController {
     
         return response.status(200).json(dato)
     }
+    async updatePeso ({ params, request, response }) {
+        const datoInfo = request.only(['peso'])
+        
+        const dato = await Dato.find(params.id)
+        if (!dato) {
+            return response.status(404).json({data: "Dato no encontrado."})
+        }
+        dato.peso = datoInfo.peso
+    
+        await dato.save()
+    
+        return response.status(200).json(dato)
+    }
     async delete ({ params, response }) {
         const dato = await Dato.find(params.id)
         if (!dato) {
