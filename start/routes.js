@@ -52,6 +52,7 @@ Route.group(() =>{
   //LOGS
   Route.get('log', 'LogController.index')
   //SEGUIMIENTO
+  Route.get('seguimiento','SeguimientoController.index')
   Route.post('seguimiento', 'SeguimientoController.store')
 }).prefix('api/v1')
 
