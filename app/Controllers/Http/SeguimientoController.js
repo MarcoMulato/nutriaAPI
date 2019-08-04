@@ -3,10 +3,11 @@ const Seguimiento = use('App/Models/Seguimiento')
 
 class SeguimientoController {
     async store ({ request, response }) {
-        const seguimientoInfo = request.only(['peso'])
+        const seguimientoInfo = request.only(['peso','paciente_id'])
 
         const seguimiento = new Seguimiento()
-        seguimiento.usuario = seguimientoInfo.usuario
+        seguimiento.paciente_id = seguimientoInfo.paciente_id
+        seguimiento.peso = seguimientoInfo.peso
     
         await seguimiento.save()
     
