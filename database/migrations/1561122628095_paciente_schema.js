@@ -7,8 +7,8 @@ class PacienteSchema extends Schema {
   up () {
     this.create('pacientes', (table) => {
       table.increments()
-      table.string('usuario', 80).notNullable().unique()
-      table.string('correo', 254).notNullable().unique()
+      table.string('usuario', 80).notNullable()
+      table.string('correo', 254).notNullable()
       table.string('contraseña', 60).notNullable()
       table.string('eliminado', 60)
       table.integer('nutriologo_id').unsigned().references('id').inTable('usuarios')
