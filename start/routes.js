@@ -51,6 +51,8 @@ Route.group(() =>{
   Route.delete('eliminar_datos/:id', 'DatoController.delete')
   //LOGS
   Route.get('log', 'LogController.index')
+  //SEGUIMIENTO
+  Route.post('seguimiento', 'SeguimientoController.store')
 }).prefix('api/v1')
 
 Route.get('/', () => {
